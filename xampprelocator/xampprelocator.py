@@ -97,6 +97,8 @@ if __name__ == "__main__":
     print("Jika Program dijalankan pada versi Xampp berbeda, mungkin program ini tidak akan berjalan sebagaimana mestinya")
     if input("Lanjutkan? [Y/N] ").lower() != "y": exit()
 
+    print(f"\nMenjalankan program pada direktori \"{PATH}\"")
+
     print()
     for target in TARGETS:
         CreateBackup(target)
