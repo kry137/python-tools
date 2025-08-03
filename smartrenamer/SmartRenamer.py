@@ -5,19 +5,19 @@ import os
 
 def GetPermission(question):
     userInput:str = input(question)
-    if userInput == "y" or userInput == "Y":
+    if userInput.lower() == "y":
         return True
     else: 
         return False
 
-def Rename(filename):
+def RenameItem(itemname):
     splited = ""
-    for char in filename:
+    for char in itemname:
         splited += char
-        if splited in TargetToRename: #Apakah file akan di-rename
-            nameRenamed = filename.split(splited)
+        if splited in TargetToRename: # Should the item be renamed
+            nameRenamed = itemname.split(splited)
             return nameRenamed[1]
-    return None #Jika nama tidak perlu diubah
+    return None
 
 def RenameAllFolders():
     global renamed, renameFail
@@ -80,9 +80,9 @@ if __name__ == "__main__":
 
     # Rename the items
     for file in files:
-        filesAfterRenamed.append(Rename(file))
+        filesAfterRenamed.append(RenameItem(file))
     for folder in folders:
-        foldersAfterRenamed.append(Rename(folder))
+        foldersAfterRenamed.append(RenameItem(folder))
 
     # Count how much items will be renamed 
     renamedFiles = 0
