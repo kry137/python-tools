@@ -22,6 +22,7 @@ def replace_object(value: dict | list | str):
     except json.JSONDecodeError:
         raise TypeError(f'"{value}" is an invalid JSON')
 
+    #region set the placeholder
     if isinstance(value, list):
         for i in range(0, len(value)):
             if isinstance(value[i], str) or isinstance(value[i], int) or isinstance(value[i], float) or isinstance(value[i], bool):
@@ -35,10 +36,11 @@ def replace_object(value: dict | list | str):
                 value[key] = set_placeholder(value[key])
             elif isinstance(value[key], dict) or isinstance(value[key], list):
                 replace_object(value[key])
+    #endregion set the placeholder
 
-    return json.dumps(value, sort_keys=True, indent=4)
+    return json.dumps(value, indent=4)
 
-def set_placeholder(value: str | int | float | bool, ) -> str:
+def set_placeholder(value: str | int | float | bool, ) -> str | None:
     """
     Convert the given value to its placeholder
 
